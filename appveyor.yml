@@ -48,7 +48,7 @@ install:
   - conda update -yq --all
   - conda install -yq conda-build jinja2 anaconda-client
   - powershell .\\devtools\\appveyor\\missing-headers.ps1
-  - ps: (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/omnia-md/conda-recipes/master/conda-build-all", "conda-build-all")
+  - ps: (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/omnia-md/conda-recipes/master/conda-build-all", $env:APPVEYOR_BUILD_FOLDER + "\conda-build-all")
   - ps: Write-Host $env:PATH
 
 build: false
