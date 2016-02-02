@@ -44,15 +44,11 @@ environment:
 
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - set PATH=C:\MinGW\msys\1.0\bin;%PATH%
   - conda config --add channels omnia
-  - conda config --add channels salilab
   - conda update -yq --all
   - conda install -yq conda-build jinja2 anaconda-client
   - powershell .\\devtools\\appveyor\\missing-headers.ps1
-  # Retrieve conda-build-all
-  # - wget https://raw.githubusercontent.com/omnia-md/conda-recipes/master/conda-build-all -OutFile conda-build-all --no-check-certificate
-  - ps: wget https://raw.githubusercontent.com/omnia-md/conda-recipes/master/conda-build-all -OutFile conda-build-all
+  - (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/omnia-md/conda-recipes/master/conda-build-all", "conda-build-all")
 
 build: false
 
